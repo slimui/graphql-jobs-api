@@ -47,6 +47,7 @@ type Mutation {
   LoginEmail(input: LoginEmailInput!): LoginEmailPayload
   RegisterEmail(input: RegisterEmailInput!): RegisterEmailPayload
   ChangePassword(input: ChangePasswordInput!): ChangePasswordPayload
+  RegisterJob(input: RegisterJobInput!): RegisterJobPayload
 }
 
 """An object with an ID"""
@@ -92,6 +93,27 @@ input RegisterEmailInput {
 
 type RegisterEmailPayload {
   token: String
+  error: String
+  clientMutationId: String
+}
+
+input RegisterJobInput {
+  active: Boolean!
+  title: String!
+  role: String!
+  salary: Float!
+  benefits: String
+  description: String!
+  workload: String!
+  localization: String!
+  addinfo: String
+  contract: String!
+  areas: [String]
+  subareas: [String]
+  clientMutationId: String
+}
+
+type RegisterJobPayload {
   error: String
   clientMutationId: String
 }
