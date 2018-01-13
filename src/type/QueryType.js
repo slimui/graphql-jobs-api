@@ -9,6 +9,9 @@ import { NodeField } from '../interface/NodeInterface';
 import { UserLoader } from '../loader';
 import UserConnection from '../connection/UserConnection';
 
+import JobType from './JobType';
+import { JobLoader } from '../loader';
+
 export default new GraphQLObjectType({
   name: 'Query',
   description: 'The root of all... queries',
@@ -39,6 +42,18 @@ export default new GraphQLObjectType({
         },
       },
       resolve: (obj, args, context) => UserLoader.loadUsers(context, args),
+    },
+    job: {
+      type: JobType,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve: (obj, args, context) => {
+        const { id } = fromGlobalId(args.id);
+        return JobLoader.load(context, id);
+      },
     },
   }),
 });
