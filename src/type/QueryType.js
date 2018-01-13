@@ -47,12 +47,11 @@ export default new GraphQLObjectType({
       type: JobType,
       args: {
         id: {
-          type: new GraphQLNonNull(GraphQLID),
+          type: new GraphQLNonNull(GraphQLString),
         },
       },
       resolve: (obj, args, context) => {
-        const { id } = fromGlobalId(args.id);
-        return JobLoader.load(context, id);
+        return JobLoader.load(context, args.id);
       },
     },
   }),
