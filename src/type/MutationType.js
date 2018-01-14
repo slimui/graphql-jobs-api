@@ -9,6 +9,7 @@ import ChangePassword from '../mutation/ChangePasswordMutation';
 
 // Job
 import RegisterJob from '../mutation/RegisterJobMutation';
+import UpdateJob from '../mutation/UpdateJobMutation';
 
 export default new GraphQLObjectType({
   name: 'Mutation',
@@ -19,5 +20,6 @@ export default new GraphQLObjectType({
     ChangePassword,
 
     RegisterJob,
+    UpdateJob,
   }),
 });
