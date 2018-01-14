@@ -1300,6 +1300,18 @@
           "description": null,
           "fields": [
             {
+              "name": "jobinfo",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Job",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "error",
               "description": null,
               "args": [],

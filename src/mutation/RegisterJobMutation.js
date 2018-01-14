@@ -3,6 +3,8 @@
 import { GraphQLList, GraphQLString, GraphQLNonNull, GraphQLBoolean, GraphQLFloat } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { Job } from '../model';
+import JobType from '../type/JobType';
+import { JobLoader } from '../loader';
 
 export default mutationWithClientMutationId({
   name: 'RegisterJob',
@@ -58,7 +60,7 @@ export default mutationWithClientMutationId({
     areas,
     subareas,
   }) => {
-    const job = new Job({
+    let job = new Job({
       active,
       title,
       role,
@@ -72,13 +74,20 @@ export default mutationWithClientMutationId({
       areas,
       subareas,
     });
-    await job.save();
+    job = await job.save();
+
+    console.log(job);
 
     return {
+      jobid: job._id,
       error: null,
     };
   },
   outputFields: {
+    jobinfo: {
+      type: JobType,
+      resolve: (obj, args, context) => JobLoader.load(context, obj.jobid),
+    },
     error: {
       type: GraphQLString,
       resolve: ({ error }) => error,

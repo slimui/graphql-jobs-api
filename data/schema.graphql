@@ -114,6 +114,7 @@ input RegisterJobInput {
 }
 
 type RegisterJobPayload {
+  jobinfo: Job
   error: String
   clientMutationId: String
 }
