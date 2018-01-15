@@ -9,18 +9,29 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    email: {
+      type: String,
+      index: true,
+    },
     password: {
       type: String,
       hidden: true,
     },
-    email: {
+    usertype: {
       type: String,
-      required: false,
-      index: true,
+      default: 'hirer',
     },
-    active: {
-      type: Boolean,
-      default: true,
+    displayname: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
     },
   },
   {
