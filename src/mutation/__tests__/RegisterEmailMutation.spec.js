@@ -8,12 +8,14 @@ beforeEach(async () => await setupTest());
 
 it('should not register with the an existing email', async () => {
   const name = 'awesome';
-  const email = 'awesome@example.com';
+  const email = 'awesomeregistertest1@example.com';
 
   const user = new User({
     name,
     email,
     password: '123',
+    description: 'awesome desc',
+    displayname: 'AweSome',
   });
   await user.save();
 
@@ -21,10 +23,12 @@ it('should not register with the an existing email', async () => {
   const query = `
     mutation M {
       RegisterEmail(input: {
-        clientMutationId: "abc"
+        clientMutationId: "test1"
         name: "Awesome"
         email: "${email}"
         password: "awesome"
+        description: "awesome desc"
+        displayname: "Awe-Some"
       }) {
         clientMutationId
         token
@@ -44,16 +48,18 @@ it('should not register with the an existing email', async () => {
 });
 
 it('should create a new user with parameters are valid', async () => {
-  const email = 'awesome@example.com';
+  const email = 'awesomeregistertest2@example.com';
 
   //language=GraphQL
   const query = `
     mutation M {
       RegisterEmail(input: {
-        clientMutationId: "abc"
+        clientMutationId: "test2"
         name: "Awesome"
         email: "${email}"
         password: "awesome"
+        description: "awesome desc"
+        displayname: "Awe-Some"
       }) {
         clientMutationId
         token

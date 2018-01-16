@@ -13,6 +13,10 @@ export default new GraphQLObjectType({
       type: GraphQLString,
       resolve: user => user._id,
     },
+    active: {
+      type: GraphQLBoolean,
+      resolve: user => user.active,
+    },
     name: {
       type: GraphQLString,
       resolve: user => user.name,
@@ -21,9 +25,13 @@ export default new GraphQLObjectType({
       type: GraphQLString,
       resolve: user => user.email,
     },
-    active: {
-      type: GraphQLBoolean,
-      resolve: user => user.active,
+    displayname: {
+      type: GraphQLString,
+      resolve: user => user.displayname,
+    },
+    description: {
+      type: GraphQLString,
+      resolve: user => user.description,
     },
   }),
   interfaces: () => [NodeInterface],

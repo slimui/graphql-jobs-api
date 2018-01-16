@@ -9,18 +9,24 @@ import type { GraphQLContext } from '../TypeDefinition';
 type UserType = {
   id: string,
   _id: string,
+  active: boolean,
   name: string,
   password: string,
   email: string,
-  active: boolean,
+  usertype: string,
+  displayname: string,
+  description: string,
 };
 
 export default class User {
   id: string;
   _id: string;
+  active: boolean;
   name: string;
   email: string;
-  active: boolean;
+  usertype: string;
+  displayname: string;
+  description: string;
 
   constructor(data: UserType, { user }: GraphQLContext) {
     this.id = data.id;
@@ -29,8 +35,11 @@ export default class User {
 
     // you can only see your own email, and your active status
     if (user && user._id.equals(data._id)) {
-      this.email = data.email;
       this.active = data.active;
+      this.email = data.email;
+      this.usertype = data.usertype;
+      this.displayname = data.displayname;
+      this.description = data.description;
     }
   }
 }

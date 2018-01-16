@@ -34,8 +34,10 @@ it('should not change password of non authorized user', async () => {
 it('should not change password if oldPassword is invalid', async () => {
   const user = new User({
     name: 'user',
-    email: 'awesome@example.com',
+    email: 'awesomechangepasswordtest2@example.com',
     password: 'awesome',
+    description: 'awesome desc',
+    displayname: 'AweSome',
   });
   await user.save();
 
@@ -67,8 +69,10 @@ it('should change password if oldPassword is correct', async () => {
 
   const user = new User({
     name: 'user',
-    email: 'awesome@example.com',
+    email: 'awesomechangepasswordtest3@example.com',
     password,
+    description: 'awesome desc',
+    displayname: 'Awe-Some',
   });
   await user.save();
 
