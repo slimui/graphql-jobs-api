@@ -11,6 +11,8 @@ it('should load User', async () => {
     name: 'user',
     email: 'user@example.com',
     password: '123',
+    description: 'awesome desc',
+    displayname: 'Awe-Some',
   });
   await user.save();
 

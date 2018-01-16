@@ -11,9 +11,9 @@ it('should not login if email is not in the database', async () => {
   const query = `
     mutation M {
       LoginEmail(input: {
-        clientMutationId: "abc"
-        email: "awesome@example.com"
-        password: "awesome"
+        clientMutationId: "test1"
+        email: "awesometest1@example.com"
+        password: "awesometest1"
       }) {
         clientMutationId
         token
@@ -35,8 +35,10 @@ it('should not login if email is not in the database', async () => {
 it('should not login with wrong email', async () => {
   const user = new User({
     name: 'user',
-    email: 'awesome@example.com',
-    password: 'awesome',
+    email: 'awesometest2@example.com',
+    password: 'awesometest2',
+    description: 'awesome desc',
+    displayname: 'Awe-Some',
   });
   await user.save();
 
@@ -44,8 +46,8 @@ it('should not login with wrong email', async () => {
   const query = `
     mutation M {
       LoginEmail(input: {
-        clientMutationId: "abc"
-        email: "awesome@example.com"
+        clientMutationId: "test2"
+        email: "awesometestsdaw@example.com"
         password: "notawesome"
       }) {
         clientMutationId
@@ -66,13 +68,15 @@ it('should not login with wrong email', async () => {
 });
 
 it('should generate token when email and password is correct', async () => {
-  const email = 'awesome@example.com';
-  const password = 'awesome';
+  const email = 'awesometest3@example.com';
+  const password = 'awesometest3';
 
   const user = new User({
     name: 'user',
     email,
     password,
+    description: 'awesome desc',
+    displayname: 'AweSome',
   });
   await user.save();
 
@@ -80,7 +84,7 @@ it('should generate token when email and password is correct', async () => {
   const query = `
     mutation M {
       LoginEmail(input: {
-        clientMutationId: "abc"
+        clientMutationId: "test3"
         email: "${email}"
         password: "${password}"
       }) {

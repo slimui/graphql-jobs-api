@@ -10,6 +10,8 @@ it('should not show email of other users', async () => {
     name: 'user',
     email: 'user@example.com',
     password: '123',
+    description: 'user desc',
+    displayname: 'user Display',
   });
   await user.save();
 
@@ -17,6 +19,8 @@ it('should not show email of other users', async () => {
     name: 'awesome',
     email: 'awesome@example.com',
     password: '123',
+    description: 'awesome desc',
+    displayname: 'Awe-some',
   });
   await user1.save();
 
@@ -30,6 +34,8 @@ it('should not show email of other users', async () => {
             name
             email
             active
+            description
+            displayname
           }
         }
       }
@@ -44,7 +50,11 @@ it('should not show email of other users', async () => {
 
   expect(edges[0].node.name).toBe(user1.name);
   expect(edges[0].node.email).toBe(null);
+  expect(edges[0].node.description).toBe(null);
+  expect(edges[0].node.displayname).toBe(null);
 
   expect(edges[1].node.name).toBe(user.name);
   expect(edges[1].node.email).toBe(user.email);
+  expect(edges[1].node.description).toBe(user.description);
+  expect(edges[1].node.displayname).toBe(user.displayname);
 });
