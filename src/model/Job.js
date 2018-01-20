@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 
 const Schema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     active: {
       type: Boolean,
       default: true,

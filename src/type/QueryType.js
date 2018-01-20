@@ -1,8 +1,7 @@
 // @flow
 
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList } from 'graphql';
-import { globalIdField, connectionArgs, fromGlobalId } from 'graphql-relay';
-import { NodeInterface } from '../interface/NodeInterface';
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from 'graphql';
+import { connectionArgs, fromGlobalId } from 'graphql-relay';
 
 import UserType from './UserType';
 import { NodeField } from '../interface/NodeInterface';
@@ -51,9 +50,7 @@ export default new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (obj, args, context) => {
-        return JobLoader.load(context, args.id);
-      },
+      resolve: (obj, args, context) => JobLoader.load(context, args.id),
     },
     allJobs: {
       type: JobConnection.connectionType,

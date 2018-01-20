@@ -2,13 +2,16 @@
 
 import { GraphQLList, GraphQLString, GraphQLNonNull, GraphQLBoolean, GraphQLFloat } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
-import { Job } from '../model';
+import { Job, User } from '../model';
 import JobType from '../type/JobType';
 import { JobLoader } from '../loader';
 
 export default mutationWithClientMutationId({
   name: 'RegisterJob',
   inputFields: {
+    user: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
     active: {
       type: new GraphQLNonNull(GraphQLBoolean),
     },
@@ -47,6 +50,7 @@ export default mutationWithClientMutationId({
     },
   },
   mutateAndGetPayload: async ({
+    user,
     active,
     title,
     role,
@@ -61,6 +65,7 @@ export default mutationWithClientMutationId({
     subareas,
   }) => {
     let job = new Job({
+      user,
       active,
       title,
       role,
@@ -74,9 +79,17 @@ export default mutationWithClientMutationId({
       areas,
       subareas,
     });
-    job = await job.save();
 
-    console.log(job);
+    const userInModel = await User.findById(user);
+
+    if (!userInModel) {
+      return {
+        jobid: null,
+        error: 'USER_NOT_FOUND',
+      };
+    }
+
+    job = await job.save();
 
     return {
       jobid: job._id,

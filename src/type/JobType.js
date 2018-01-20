@@ -13,6 +13,10 @@ export default new GraphQLObjectType({
       type: GraphQLString,
       resolve: job => job._id,
     },
+    user: {
+      type: GraphQLString,
+      resolve: job => job.user,
+    },
     active: {
       type: GraphQLBoolean,
       resolve: job => job.active,

@@ -9,6 +9,7 @@ import type { GraphQLContext } from '../TypeDefinition';
 type JobType = {
   id: string,
   _id: string,
+  user: string,
   active: boolean,
   title: string,
   role: string,
@@ -26,6 +27,7 @@ type JobType = {
 export default class Job {
   id: string;
   _id: string;
+  user: string;
   active: boolean;
   title: string;
   role: string;
@@ -42,6 +44,7 @@ export default class Job {
   constructor(data: JobType, { job }: GraphQLContext) {
     this.id = data.id;
     this._id = data._id;
+    this.user = data.user;
     this.name = data.name;
     this.active = data.active;
     this.title = data.title;

@@ -612,6 +612,18 @@
               "deprecationReason": null
             },
             {
+              "name": "user",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "active",
               "description": null,
               "args": [],
@@ -1355,6 +1367,20 @@
           "description": null,
           "fields": null,
           "inputFields": [
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
             {
               "name": "active",
               "description": null,

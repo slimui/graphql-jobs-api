@@ -17,6 +17,7 @@ type Job {
   """The ID of an object"""
   id: ID!
   _id: String
+  user: String
   active: Boolean
   title: String
   role: String
@@ -121,6 +122,7 @@ type RegisterEmailPayload {
 }
 
 input RegisterJobInput {
+  user: String!
   active: Boolean!
   title: String!
   role: String!
