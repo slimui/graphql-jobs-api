@@ -1,4 +1,4 @@
-import { GraphQLList, GraphQLString, GraphQLNonNull, GraphQLBoolean, GraphQLFloat } from 'graphql';
+import { GraphQLList, GraphQLString, GraphQLBoolean, GraphQLFloat } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 
 import { Job } from '../model';
