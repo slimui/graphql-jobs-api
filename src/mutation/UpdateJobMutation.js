@@ -14,10 +14,10 @@ export default mutationWithClientMutationId({
     active: {
       type: GraphQLBoolean,
     },
-    title: {
+    email: {
       type: GraphQLString,
     },
-    role: {
+    title: {
       type: GraphQLString,
     },
     salary: {
@@ -51,8 +51,8 @@ export default mutationWithClientMutationId({
   mutateAndGetPayload: async ({
     id,
     active,
+    email,
     title,
-    role,
     salary,
     benefits,
     description,
@@ -66,8 +66,8 @@ export default mutationWithClientMutationId({
     const job = await Job.findOne({ id });
 
     job.active = active !== null ? active : job.active;
+    job.email = email !== null ? email : job.email;
     job.title = title !== null ? title : job.title;
-    job.role = role !== null ? role : job.role;
     job.salary = salary !== null ? salary : job.salary;
     job.description = description !== null ? description : job.description;
     job.workload = workload !== null ? workload : job.workload;

@@ -636,7 +636,7 @@
               "deprecationReason": null
             },
             {
-              "name": "title",
+              "name": "email",
               "description": null,
               "args": [],
               "type": {
@@ -648,7 +648,7 @@
               "deprecationReason": null
             },
             {
-              "name": "role",
+              "name": "title",
               "description": null,
               "args": [],
               "type": {
@@ -1396,7 +1396,7 @@
               "defaultValue": null
             },
             {
-              "name": "title",
+              "name": "email",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -1410,7 +1410,7 @@
               "defaultValue": null
             },
             {
-              "name": "role",
+              "name": "title",
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -1630,7 +1630,7 @@
               "defaultValue": null
             },
             {
-              "name": "title",
+              "name": "email",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -1640,7 +1640,7 @@
               "defaultValue": null
             },
             {
-              "name": "role",
+              "name": "title",
               "description": null,
               "type": {
                 "kind": "SCALAR",
