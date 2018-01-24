@@ -17,6 +17,7 @@ type Job {
   """The ID of an object"""
   id: ID!
   _id: String
+  user: String
   active: Boolean
   title: String
   role: String
@@ -29,6 +30,25 @@ type Job {
   contract: String
   areas: [String]
   subareas: [String]
+}
+
+"""A connection to a list of items."""
+type JobConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [JobEdge]
+  count: Int
+}
+
+"""An edge in a connection."""
+type JobEdge {
+  """The item at the end of the edge"""
+  node: Job
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 input LoginEmailInput {
@@ -83,6 +103,7 @@ type Query {
   user(id: ID!): User
   users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
   job(id: String!): Job
+  allJobs(after: String, first: Int, before: String, last: Int, search: String): JobConnection
 }
 
 input RegisterEmailInput {
@@ -101,6 +122,7 @@ type RegisterEmailPayload {
 }
 
 input RegisterJobInput {
+  user: String!
   active: Boolean!
   title: String!
   role: String!

@@ -1,8 +1,7 @@
 // @flow
 
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } from 'graphql';
-import { globalIdField, connectionArgs, fromGlobalId } from 'graphql-relay';
-import { NodeInterface } from '../interface/NodeInterface';
+import { connectionArgs, fromGlobalId } from 'graphql-relay';
 
 import UserType from './UserType';
 import { NodeField } from '../interface/NodeInterface';
@@ -11,6 +10,7 @@ import UserConnection from '../connection/UserConnection';
 
 import JobType from './JobType';
 import { JobLoader } from '../loader';
+import JobConnection from '../connection/JobConnection';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -50,9 +50,17 @@ export default new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
         },
       },
-      resolve: (obj, args, context) => {
-        return JobLoader.load(context, args.id);
+      resolve: (obj, args, context) => JobLoader.load(context, args.id),
+    },
+    allJobs: {
+      type: JobConnection.connectionType,
+      args: {
+        ...connectionArgs,
+        search: {
+          type: GraphQLString,
+        },
       },
+      resolve: (obj, args, context) => JobLoader.loadJobs(context, args),
     },
   }),
 });

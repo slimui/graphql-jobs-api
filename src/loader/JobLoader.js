@@ -9,6 +9,7 @@ import type { GraphQLContext } from '../TypeDefinition';
 type JobType = {
   id: string,
   _id: string,
+  user: string,
   active: boolean,
   title: string,
   role: string,
@@ -26,6 +27,7 @@ type JobType = {
 export default class Job {
   id: string;
   _id: string;
+  user: string;
   active: boolean;
   title: string;
   role: string;
@@ -42,6 +44,7 @@ export default class Job {
   constructor(data: JobType, { job }: GraphQLContext) {
     this.id = data.id;
     this._id = data._id;
+    this.user = data.user;
     this.name = data.name;
     this.active = data.active;
     this.title = data.title;
@@ -60,11 +63,6 @@ export default class Job {
 
 export const getLoader = () => new DataLoader(ids => mongooseLoader(JobModel, ids));
 
-const viewerCanSee = (context, data) => {
-  // Anyone can see another job
-  return true;
-};
-
 export const load = async (context: GraphQLContext, id: string): Promise<?Job> => {
   if (!id) {
     return null;
@@ -76,7 +74,19 @@ export const load = async (context: GraphQLContext, id: string): Promise<?Job> =
   } catch (err) {
     return null;
   }
-  return viewerCanSee(context, data) ? new Job(data, context) : null;
+  return new Job(data, context);
+};
+
+export const loadJobs = async (context: GraphQLContext, args: ConnectionArguments) => {
+  const where = args.search ? { name: { $regex: new RegExp(`^${args.search}`, 'ig') } } : {};
+  const jobs = JobModel.find(where, { _id: 1 }).sort({ createdAt: -1 });
+
+  return connectionFromMongoCursor({
+    cursor: jobs,
+    context,
+    args,
+    loader: load,
+  });
 };
 
 export const clearCache = ({ dataloaders }: GraphQLContext, id: string) => {
