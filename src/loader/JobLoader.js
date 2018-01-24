@@ -11,8 +11,8 @@ type JobType = {
   _id: string,
   user: string,
   active: boolean,
+  email: string,
   title: string,
-  role: string,
   salary: number,
   benefits: string,
   description: string,
@@ -29,8 +29,8 @@ export default class Job {
   _id: string;
   user: string;
   active: boolean;
+  email: string;
   title: string;
-  role: string;
   salary: number;
   benefits: string;
   description: string;
@@ -47,8 +47,8 @@ export default class Job {
     this.user = data.user;
     this.name = data.name;
     this.active = data.active;
+    this.email = data.email;
     this.title = data.title;
-    this.role = data.role;
     this.salary = data.salary;
     this.benefits = data.benefits;
     this.description = data.description;

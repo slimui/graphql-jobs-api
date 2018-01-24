@@ -12,11 +12,11 @@ const Schema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    title: {
+    email: {
       type: String,
       required: true,
     },
-    role: {
+    title: {
       type: String,
       required: true,
     },

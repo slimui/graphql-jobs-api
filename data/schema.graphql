@@ -19,8 +19,8 @@ type Job {
   _id: String
   user: String
   active: Boolean
+  email: String
   title: String
-  role: String
   salary: Float
   benefits: String
   description: String
@@ -124,8 +124,8 @@ type RegisterEmailPayload {
 input RegisterJobInput {
   user: String!
   active: Boolean!
+  email: String!
   title: String!
-  role: String!
   salary: Float!
   benefits: String
   description: String!
@@ -147,8 +147,8 @@ type RegisterJobPayload {
 input UpdateJobInput {
   id: String
   active: Boolean
+  email: String
   title: String
-  role: String
   salary: Float
   benefits: String
   description: String

@@ -21,13 +21,13 @@ export default new GraphQLObjectType({
       type: GraphQLBoolean,
       resolve: job => job.active,
     },
+    email: {
+      type: GraphQLString,
+      resolve: job => job.email,
+    },
     title: {
       type: GraphQLString,
       resolve: job => job.title,
-    },
-    role: {
-      type: GraphQLString,
-      resolve: job => job.role,
     },
     salary: {
       type: GraphQLFloat,

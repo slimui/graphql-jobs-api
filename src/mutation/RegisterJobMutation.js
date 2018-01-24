@@ -15,10 +15,10 @@ export default mutationWithClientMutationId({
     active: {
       type: new GraphQLNonNull(GraphQLBoolean),
     },
-    title: {
+    email: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    role: {
+    title: {
       type: new GraphQLNonNull(GraphQLString),
     },
     salary: {
@@ -52,8 +52,8 @@ export default mutationWithClientMutationId({
   mutateAndGetPayload: async ({
     user,
     active,
+    email,
     title,
-    role,
     salary,
     benefits,
     description,
@@ -67,8 +67,8 @@ export default mutationWithClientMutationId({
     let job = new Job({
       user,
       active,
+      email,
       title,
-      role,
       salary,
       benefits,
       description,
